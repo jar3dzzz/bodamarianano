@@ -442,6 +442,30 @@ function RsvpForm() {
                     ))}
                   </div>
                 </div>
+
+                {/* <div className="space-y-3 mt-4">
+                  <label className="block text-[10px] tracking-wider uppercase font-bold text-muted-foreground">Número de teléfono</label>
+                  <div className="">
+                    <input type="number" min={0} className="w-full px-3 py-2.5 border border-border rounded bg-input-background text-xs text-foreground outline-none focus:border-primary focus:ring-1 focus:ring-primary/20 transition-all" />
+                  </div>
+                </div>
+
+                <div className="flex justify-center">
+                  <div className="border-b border-border pb-4 w-1/2"></div>
+                </div> */}
+
+                {/* Mensaje para los novios */}
+                {/* <div className="space-y-3">
+                  <label className="block text-[10px] tracking-wider uppercase font-bold text-muted-foreground">
+                    Mensaje para los novios:
+                  </label>
+                  <textarea
+                    className="w-full px-3 py-2.5 border border-border rounded bg-input-background text-xs text-foreground outline-none focus:border-primary focus:ring-1 focus:ring-primary/20 transition-all"
+                    // value={mensaje}
+                    // onChange={(e) => setMensaje(e.target.value)}
+                    placeholder="Escribe tu mensaje aquí..."
+                  />
+                </div> */}
               </motion.div>
             )}
 
@@ -641,52 +665,6 @@ const handleCopyClabe = () => {
       className="min-h-screen bg-background relative overflow-hidden"
       style={{ fontFamily: "var(--font-body)" }}
     >
-      {/* Global Animated Floral/Wedding Background */}
-      <div className="fixed inset-0 z-0 pointer-events-none bg-background">
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#F4EFE6]/30 to-transparent" />
-        <motion.div 
-          className="absolute -top-[10%] -left-[10%] w-[50vw] h-[50vw] text-accent/5 blur-[1px]"
-          animate={{ rotate: 360, scale: [1, 1.05, 1] }}
-          transition={{ duration: 80, repeat: Infinity, ease: "linear" }}
-        >
-          <BotanicalBranch className="w-full h-full" />
-        </motion.div>
-        <motion.div 
-          className="absolute top-[40%] -right-[15%] w-[60vw] h-[60vw] text-secondary/5 blur-[1px] rotate-[120deg]"
-          animate={{ rotate: -360, scale: [1, 1.05, 1] }}
-          transition={{ duration: 100, repeat: Infinity, ease: "linear" }}
-        >
-          <BotanicalBranch className="w-full h-full" />
-        </motion.div>
-
-        {/* Falling Cherry Blossom Petals */}
-        {CHERRY_PETALS.map((petal) => (
-          <motion.div
-            key={petal.id}
-            className="absolute pointer-events-none"
-            style={{
-              left: petal.left,
-              width: petal.size,
-              height: petal.size,
-              top: "-5%",
-              color: "rgba(251, 196, 196, 0.32)", // Slightly more noticeable soft rose-pink
-            }}
-            animate={{
-              y: ["0vh", "110vh"],
-              x: [0, petal.sway, -petal.sway, 0],
-              rotate: [petal.rotate, petal.rotate + 360],
-            }}
-            transition={{
-              duration: petal.duration,
-              repeat: Infinity,
-              ease: "linear",
-              delay: petal.delay,
-            }}
-          >
-            <CherryPetal className="w-full h-full" />
-          </motion.div>
-        ))}
-      </div>
 
       <div className="w-full min-h-screen text-foreground relative z-10 overflow-x-hidden bg-transparent">
         <EnvelopeIntro />
@@ -718,7 +696,7 @@ const handleCopyClabe = () => {
           </motion.p>
           <motion.h1
             className="text-6xl md:text-7xl text-white leading-none mb-2"
-            style={{ fontFamily: "var(--font-display)", fontWeight: 400 }}
+            style={{ fontFamily: "var(--font-cursive)", fontWeight: 400 }}
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
@@ -727,7 +705,7 @@ const handleCopyClabe = () => {
           </motion.h1>
           <motion.p
             className="text-4xl my-4 italic"
-            style={{ fontFamily: "var(--font-display)", color: "var(--accent)" }}
+            style={{ fontFamily: "var(--font-cursive)", color: "var(--accent)" }}
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.6 }}
@@ -736,7 +714,7 @@ const handleCopyClabe = () => {
           </motion.p>
           <motion.h1
             className="text-6xl md:text-7xl text-white leading-none mb-10"
-            style={{ fontFamily: "var(--font-display)", fontWeight: 400 }}
+            style={{ fontFamily: "var(--font-cursive)", fontWeight: 400 }}
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.8 }}

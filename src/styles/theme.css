@@ -4,6 +4,7 @@
   --font-size: 16px;
   --font-display: "Playfair Display", Georgia, serif;
   --font-body: "Raleway", system-ui, sans-serif;
+  --font-cursive: "Pinyon Script", cursive;
   --background: #FAF7F2;
   --foreground: #1C2D24;
   --card: #FFFFFF;
@@ -83,6 +84,7 @@
 @theme inline {
   --font-display: var(--font-display);
   --font-body: var(--font-body);
+  --font-cursive: var(--font-cursive);
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
