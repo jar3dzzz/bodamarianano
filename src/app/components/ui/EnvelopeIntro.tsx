@@ -104,7 +104,7 @@ export default function EnvelopeIntro() {
       >
         <div className="w-24 h-24 rounded-full overflow-hidden active:scale-95 transition-transform duration-200 flex items-center justify-center relative">
           <img
-            src="/sello.png"
+            src="/sello-d.png"
             alt="Sello"
             className="w-full h-full object-contain"
           />

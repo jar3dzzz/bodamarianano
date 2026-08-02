@@ -316,24 +316,61 @@ function RsvpForm() {
                 )}
               </p>
               
-              <div className="border border-border p-5 bg-muted/30 my-4 text-left rounded-sm space-y-2">
-                <p className="text-xs font-bold uppercase tracking-wider text-primary">Detalles de la confirmación</p>
-                <p className="text-sm font-semibold text-foreground">{selectedGuest?.nombre_invitacion}</p>
-                <p className="text-xs text-foreground">
-                  Estado: <span className="font-semibold">{selectedGuest?.confirmado ? "Asistiré" : "No podré asistir"}</span>
-                </p>
-                {selectedGuest?.confirmado && (
-                  <>
-                    <p className="text-xs text-foreground">
-                      Pases confirmados: <span className="font-semibold">{selectedGuest?.pases_confirmados}</span>
-                    </p>
-                    {selectedGuest?.nombres_asistentes && selectedGuest.nombres_asistentes.length > 0 && (
-                      <p className="text-[11px] text-muted-foreground mt-1.5 leading-relaxed">
-                        <span className="font-medium text-foreground">Asistentes:</span> {selectedGuest.nombres_asistentes.join(", ")}
-                      </p>
-                    )}
-                  </>
-                )}
+              <div className="border border-border p-6 bg-muted/20 my-6 text-left rounded-lg space-y-5 shadow-sm">
+                <div className="border-b border-border/50 pb-3">
+                  <p className="text-sm font-bold uppercase tracking-widest text-primary mb-2">Detalles de la confirmación</p>
+                  <p className="text-3xl md:text-4xl text-primary mt-1" style={{ fontFamily: "var(--font-cursive)" }}>{selectedGuest?.nombre_invitacion}</p>
+                </div>
+                
+                <div className="space-y-4 pt-2">
+                  <div className="flex items-center gap-3">
+                    <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-primary shrink-0">
+                      <Heart className="w-4 h-4" />
+                    </div>
+                    <div>
+                      <p className="text-[10px] text-muted-foreground uppercase tracking-widest font-bold">Estado</p>
+                      <p className="text-base font-medium text-foreground">{selectedGuest?.confirmado ? "¡Asistiré a la boda!" : "No podré asistir"}</p>
+                    </div>
+                  </div>
+
+                  {selectedGuest?.confirmado && (
+                    <>
+                      <div className="flex items-center gap-3">
+                        <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-primary shrink-0">
+                          <Check className="w-4 h-4" />
+                        </div>
+                        <div>
+                          <p className="text-[10px] text-muted-foreground uppercase tracking-widest font-bold">Pases confirmados</p>
+                          <p className="text-base font-medium text-foreground">{selectedGuest?.pases_confirmados} {selectedGuest?.pases_confirmados === 1 ? "Pase" : "Pases"}</p>
+                        </div>
+                      </div>
+
+                      {selectedGuest?.nombres_asistentes && selectedGuest.nombres_asistentes.length > 0 && (
+                        <div className="mt-4 bg-background p-4 rounded border border-border/50">
+                          <p className="text-[10px] font-bold text-primary uppercase tracking-widest mb-2">Asistentes Registrados:</p>
+                          <ul className="space-y-2">
+                            {selectedGuest.nombres_asistentes.map((nombre: string, i: number) => (
+                              <li key={i} className="text-sm text-foreground flex items-center gap-2">
+                                <span className="w-1.5 h-1.5 rounded-full bg-primary/50" />
+                                {nombre}
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      )}
+                      
+                      <div className="flex items-center gap-3 pt-2">
+                        <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-primary shrink-0">
+                          <MapPin className="w-4 h-4" />
+                        </div>
+                        <div>
+                          <p className="text-[10px] text-muted-foreground uppercase tracking-widest font-bold">Nos vemos el</p>
+                          <p className="text-base font-medium text-foreground">21 de Noviembre, 2026</p>
+                        </div>
+                      </div>
+                    </>
+                  )}
+                </div>
               </div>
 
               <p className="text-xs text-muted-foreground italic pt-2">
@@ -365,9 +402,11 @@ function RsvpForm() {
           </div>
         ) : (
           <form onSubmit={handleSubmit} className="space-y-6">
-            <div className="border-b border-border pb-4">
-              <p className="text-[10px] tracking-widest uppercase text-muted-foreground font-bold">Invitación seleccionada</p>
-              <h4 className="text-lg font-semibold text-foreground mt-0.5">{selectedGuest.nombre_invitacion}</h4>
+            <div className="border-b border-border pb-8 pt-2 text-center">
+              <p className="text-[10px] tracking-[0.2em] uppercase text-muted-foreground font-bold mb-4">Invitación Especial Para</p>
+              <h4 className="text-4xl md:text-5xl mt-2" style={{ fontFamily: "var(--font-cursive)", fontWeight: 400, color: "var(--primary)" }}>
+                {selectedGuest.nombre_invitacion}
+              </h4>
             </div>
 
             <div className="space-y-3">
@@ -628,7 +667,7 @@ export default function App() {
   }
 
 const handleCopyClabe = () => {
-    const clabe = "014690920016940652";
+    const clabe = "012790015028788493";
     if (navigator.clipboard && navigator.clipboard.writeText) {
       navigator.clipboard.writeText(clabe).then(() => {
         setCopied(true);
@@ -733,7 +772,76 @@ const handleCopyClabe = () => {
       </section>
 
       {/* ── Sello Decorativo ── */}
-      <div className="w-full h-[4px] mx-auto" style={{ backgroundColor: "var(--accent)" }} />      
+      <div className="w-full h-[4px] mx-auto" style={{ backgroundColor: "var(--accent)" }} >
+              {/* Sello divisor */}
+        <div className="absolute left-1/2 -translate-x-1/2 -translate-y-1/2 z-20">
+          <motion.div 
+            className="w-20 h-20 sm:w-24 sm:h-24 rounded-full p-1.5 flex items-center justify-center"
+            initial={{ opacity: 0, rotate: -10 }}
+            whileInView={{ opacity: 1, rotate: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+          >
+            <img
+              src="/sello-d.png"
+              alt="Sello"
+              className="w-full h-full object-contain"
+            />
+          </motion.div>
+        </div>
+      </div>      
+
+
+
+      {/* ── Padres ── */}
+      <section className="py-16 px-6 max-w-4xl mx-auto">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+        >
+          <div 
+            className="border p-2 bg-card shadow-sm hover:shadow-md transition-all duration-500 hover:-translate-y-1 max-w-3xl mx-auto" 
+            style={{ borderColor: "var(--border)" }}
+          >
+            <div className="border p-6 md:p-8 relative" style={{ borderColor: "rgba(181, 145, 84, 0.25)" }}>
+              <div className="absolute top-0 inset-x-4 h-0.5" style={{ backgroundColor: "var(--accent)", opacity: 0.7 }} />
+              <p className="text-[10px] tracking-[0.4em] uppercase mb-6 text-center font-semibold" style={{ color: "var(--primary)" }}>
+                Con la bendición de sus padres:
+              </p>
+              <div className="grid grid-cols-2 gap-6 text-center relative">
+                <div className="border-r pr-4" style={{ borderColor: "rgba(181, 145, 84, 0.2)" }}>
+                  <p className="text-[9px] tracking-[0.3em] uppercase mb-4 text-muted-foreground font-bold">Padres de la Novia</p>
+                  <div className="space-y-1">
+                    <p className="text-base md:text-lg text-foreground font-semibold leading-snug" style={{ fontFamily: "var(--font-display)" }}>Dioseline Gómez Gómez</p>
+                    <div className="flex items-center justify-center py-1 text-accent/60 text-[9px] select-none">
+                      <span className="w-3 h-[1px] bg-accent/30" />
+                      <span className="mx-2 font-serif italic text-accent font-medium text-[11px]">&amp;</span>
+                      <span className="w-3 h-[1px] bg-accent/30" />
+                    </div>
+                    <p className="text-base md:text-lg text-foreground font-semibold leading-snug" style={{ fontFamily: "var(--font-display)" }}>Horacio Domínguez Guichard</p>
+                  </div>
+                </div>
+                <div className="pl-4">
+                  <p className="text-[9px] tracking-[0.3em] uppercase mb-4 text-muted-foreground font-bold">Padres del Novio</p>
+                  <div className="space-y-1">
+                    <p className="text-base md:text-lg text-foreground font-semibold leading-snug" style={{ fontFamily: "var(--font-display)" }}>Libertad González Balboa</p>
+                    <div className="flex items-center justify-center py-1 text-accent/60 text-[9px] select-none">
+                      <span className="w-3 h-[1px] bg-accent/30" />
+                      <span className="mx-2 font-serif italic text-accent font-medium text-[11px]">&amp;</span>
+                      <span className="w-3 h-[1px] bg-accent/30" />
+                    </div>
+                    <p className="text-base md:text-lg text-foreground font-semibold leading-snug" style={{ fontFamily: "var(--font-display)" }}>Raúl Bermúdez Requena</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </motion.div>
+      </section>
+
+      <Divider />
 
       {/* ── Countdown ── */}
       <section
@@ -758,21 +866,7 @@ const handleCopyClabe = () => {
         />
         
         {/* Sello divisor */}
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20">
-          <motion.div 
-            className="w-20 h-20 sm:w-24 sm:h-24 rounded-full p-1.5 flex items-center justify-center"
-            initial={{ opacity: 0, rotate: -10 }}
-            whileInView={{ opacity: 1, rotate: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-          >
-            <img
-              src="/sello.png"
-              alt="Sello"
-              className="w-full h-full object-contain"
-            />
-          </motion.div>
-        </div>
+
 
         <div className="relative z-10 max-w-3xl mx-auto flex flex-col items-center">
           <SectionHeader eyebrow="Nuestro día" eyebrowColor="var(--secondary)" />
@@ -928,7 +1022,13 @@ const handleCopyClabe = () => {
               <div className="relative border-l ml-5 border-border/60">
                 {[
                   { 
-                    time: "6:00 PM", 
+                    time: "5:00 PM", 
+                    event: "Ceremonia Religiosa", 
+                    description: "Celebración del sacramento del matrimonio.",
+                    icon: <Heart className="w-5 h-5" style={{ color: "var(--primary)" }} /> 
+                  },
+                  { 
+                    time: "6:30 PM", 
                     event: "Cóctel de Bienvenida", 
                     description: "Recepción de invitados y brindis de bienvenida en el jardín.",
                     icon: <Martini className="w-5 h-5" style={{ color: "var(--primary)" }} /> 
@@ -994,72 +1094,18 @@ const handleCopyClabe = () => {
                     <div className="grid grid-cols-2 gap-6 pt-4 border-t border-border/60">
                       <div className="border-r border-border/40 pr-4">
                         <p className="text-base mb-1 text-foreground" style={{ fontFamily: "var(--font-display)" }}>Ellas</p>
-                        <p className="text-xs text-muted-foreground leading-relaxed mb-3">Vestido largo en tonos pasteles</p>
-                        <a 
-                          href="https://www.pinterest.com/search/pins/?q=vestido+largo+pastel+boda+formal" 
-                          target="_blank" 
-                          rel="noopener noreferrer" 
-                          className="inline-block text-[9px] uppercase tracking-widest text-accent hover:opacity-80 transition-opacity font-bold"
-                          style={{ color: "var(--accent)" }}
-                        >
-                          Inspiración →
-                        </a>
+                        <p className="text-sm text-muted-foreground leading-relaxed mb-3">Formal largo</p>
                       </div>
                       <div className="pl-4">
                         <p className="text-base mb-1 text-foreground" style={{ fontFamily: "var(--font-display)" }}>Ellos</p>
-                        <p className="text-xs text-muted-foreground leading-relaxed">Traje y corbata</p>
+                        <p className="text-sm text-muted-foreground leading-relaxed">Traje oscuro</p>
                       </div>
                     </div>
                   </div>
                 </div>
               </motion.div>
 
-              {/* Padres */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8, delay: 0.2 }}
-              >
-                <p className="text-[10px] tracking-[0.4em] uppercase mb-8" style={{ color: "var(--accent)", fontFamily: "var(--font-body)" }}>Con el amor de sus padres</p>
-                <div 
-                  className="border p-2 bg-card shadow-sm hover:shadow-md transition-all duration-500 hover:-translate-y-1" 
-                  style={{ borderColor: "var(--border)" }}
-                >
-                  <div className="border p-6 md:p-8 relative" style={{ borderColor: "rgba(181, 145, 84, 0.25)" }}>
-                    <div className="absolute top-0 inset-x-4 h-0.5" style={{ backgroundColor: "var(--accent)", opacity: 0.7 }} />
-                    <p className="text-[10px] tracking-[0.4em] uppercase mb-6 text-center font-semibold" style={{ color: "var(--primary)" }}>
-                      Con la bendición de sus padres:
-                    </p>
-                    <div className="grid grid-cols-2 gap-6 text-center relative">
-                      <div className="border-r pr-4" style={{ borderColor: "rgba(181, 145, 84, 0.2)" }}>
-                        <p className="text-[9px] tracking-[0.3em] uppercase mb-4 text-muted-foreground font-bold">Padres de la Novia</p>
-                        <div className="space-y-1">
-                          <p className="text-base md:text-lg text-foreground font-semibold leading-snug" style={{ fontFamily: "var(--font-display)" }}>Dioseline Gómez Gómez</p>
-                          <div className="flex items-center justify-center py-1 text-accent/60 text-[9px] select-none">
-                            <span className="w-3 h-[1px] bg-accent/30" />
-                            <span className="mx-2 font-serif italic text-accent font-medium text-[11px]">&amp;</span>
-                            <span className="w-3 h-[1px] bg-accent/30" />
-                          </div>
-                          <p className="text-base md:text-lg text-foreground font-semibold leading-snug" style={{ fontFamily: "var(--font-display)" }}>Horacio Domínguez Guichard</p>
-                        </div>
-                      </div>
-                      <div className="pl-4">
-                        <p className="text-[9px] tracking-[0.3em] uppercase mb-4 text-muted-foreground font-bold">Padres del Novio</p>
-                        <div className="space-y-1">
-                          <p className="text-base md:text-lg text-foreground font-semibold leading-snug" style={{ fontFamily: "var(--font-display)" }}>Libertad González Balboa</p>
-                          <div className="flex items-center justify-center py-1 text-accent/60 text-[9px] select-none">
-                            <span className="w-3 h-[1px] bg-accent/30" />
-                            <span className="mx-2 font-serif italic text-accent font-medium text-[11px]">&amp;</span>
-                            <span className="w-3 h-[1px] bg-accent/30" />
-                          </div>
-                          <p className="text-base md:text-lg text-foreground font-semibold leading-snug" style={{ fontFamily: "var(--font-display)" }}>Raúl Bermúdez Requena</p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </motion.div>
+
             </div>
           </div>
         </div>
@@ -1140,8 +1186,9 @@ const handleCopyClabe = () => {
             Su compañía es el mejor regalo que podríamos recibir. Sin embargo, si deseas contribuir a nuestra mesa de regalos, puedes hacerlo a través de estas opciones:
           </p>
           <div className="inline-block border border-border px-10 py-8" style={{ backgroundColor: "var(--muted)" }}>
-             <p className="text-[10px] tracking-[0.3em] uppercase mb-3 font-semibold" style={{ color: "var(--secondary)" }}>CLABE interbancaria</p>
-             <p className="text-xl md:text-2xl mb-8 tabular-nums" style={{ fontFamily: "var(--font-display)", color: "var(--foreground)" }}>014690920016940652</p>
+             <p className="text-[10px] tracking-[0.3em] uppercase mb-3 font-semibold" style={{ color: "var(--secondary)" }}>Transferencia BBVA</p>
+             <p className="text-sm font-semibold mb-2" style={{ color: "var(--foreground)", fontFamily: "var(--font-body)" }}>Mariana Dominguez</p>
+             <p className="text-xl md:text-2xl mb-8 tabular-nums" style={{ fontFamily: "var(--font-display)", color: "var(--foreground)" }}>012 790 0150 2878 8493</p>
              <button 
                onClick={handleCopyClabe}
                className="inline-flex items-center justify-center gap-3 w-full sm:w-auto px-8 py-3 text-[10px] tracking-[0.2em] uppercase font-bold transition-all border cursor-pointer"
