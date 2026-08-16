@@ -1,5 +1,5 @@
 import { useState, useEffect, Component, ReactNode } from "react";
-import { MapPin, Heart, Martini, Utensils, Music, Car, Shirt, Check, Copy } from "lucide-react";
+import { MapPin, Heart, Martini, Utensils, Music, Car, Shirt, Check, Copy, ExternalLink } from "lucide-react";
 import EnvelopeIntro from "./components/ui/EnvelopeIntro";
 import { motion } from "motion/react";
 import LogIn from "./auth/logIn";
@@ -1185,29 +1185,50 @@ const handleCopyClabe = () => {
           <p className="text-sm text-foreground leading-relaxed max-w-md mx-auto mb-10 opacity-90">
             Su compañía es el mejor regalo que podríamos recibir. Sin embargo, si deseas contribuir a nuestra mesa de regalos, puedes hacerlo a través de estas opciones:
           </p>
-          <div className="inline-block border border-border px-10 py-8" style={{ backgroundColor: "var(--muted)" }}>
-             <p className="text-[10px] tracking-[0.3em] uppercase mb-3 font-semibold" style={{ color: "var(--secondary)" }}>Transferencia BBVA</p>
-             <p className="text-sm font-semibold mb-2" style={{ color: "var(--foreground)", fontFamily: "var(--font-body)" }}>Mariana Dominguez</p>
-             <p className="text-xl md:text-2xl mb-8 tabular-nums" style={{ fontFamily: "var(--font-display)", color: "var(--foreground)" }}>012 790 0150 2878 8493</p>
-             <button 
-               onClick={handleCopyClabe}
-               className="inline-flex items-center justify-center gap-3 w-full sm:w-auto px-8 py-3 text-[10px] tracking-[0.2em] uppercase font-bold transition-all border cursor-pointer"
-               style={{
-                 backgroundColor: copied ? "var(--secondary)" : "transparent",
-                 color: copied ? "white" : "var(--foreground)",
-                 borderColor: "var(--secondary)"
-               }}
-             >
-               {copied ? (
-                 <>
-                   <Check className="w-4 h-4" /> ¡Copiado!
-                 </>
-               ) : (
-                 <>
-                   <Copy className="w-4 h-4" /> Copiar CLABE
-                 </>
-               )}
-             </button>
+          <div className="flex flex-col md:flex-row gap-6 justify-center items-stretch">
+            <div className="flex flex-col items-center justify-center border border-border px-10 py-8 w-full md:w-auto" style={{ backgroundColor: "var(--muted)" }}>
+               <p className="text-[10px] tracking-[0.3em] uppercase mb-3 font-semibold" style={{ color: "var(--secondary)" }}>Transferencia BBVA</p>
+               <p className="text-sm font-semibold mb-2" style={{ color: "var(--foreground)", fontFamily: "var(--font-body)" }}>Mariana Dominguez</p>
+               <p className="text-xl md:text-2xl mb-8 tabular-nums" style={{ fontFamily: "var(--font-display)", color: "var(--foreground)" }}>012 790 0150 2878 8493</p>
+               <button 
+                 onClick={handleCopyClabe}
+                 className="inline-flex items-center justify-center gap-3 w-full sm:w-auto px-8 py-3 text-[10px] tracking-[0.2em] uppercase font-bold transition-all border cursor-pointer mt-auto"
+                 style={{
+                   backgroundColor: copied ? "var(--secondary)" : "transparent",
+                   color: copied ? "white" : "var(--foreground)",
+                   borderColor: "var(--secondary)"
+                 }}
+               >
+                 {copied ? (
+                   <>
+                     <Check className="w-4 h-4" /> ¡Copiado!
+                   </>
+                 ) : (
+                   <>
+                     <Copy className="w-4 h-4" /> Copiar CLABE
+                   </>
+                 )}
+               </button>
+            </div>
+
+            <div className="flex flex-col items-center justify-center border border-border px-10 py-8 w-full md:w-auto" style={{ backgroundColor: "var(--muted)" }}>
+               <p className="text-[10px] tracking-[0.3em] uppercase mb-3 font-semibold" style={{ color: "var(--secondary)" }}>Mesa de Regalos</p>
+               <p className="text-sm font-semibold mb-2" style={{ color: "var(--foreground)", fontFamily: "var(--font-body)" }}>Liverpool</p>
+               <p className="text-xl md:text-2xl mb-8 tabular-nums" style={{ fontFamily: "var(--font-display)", color: "var(--foreground)" }}>60019139</p>
+               <a 
+                 href="https://mesaderegalos.liverpool.com.mx/milistaderegalos/60019139"
+                 target="_blank"
+                 rel="noopener noreferrer"
+                 className="inline-flex items-center justify-center gap-3 w-full sm:w-auto px-8 py-3 text-[10px] tracking-[0.2em] uppercase font-bold transition-all border cursor-pointer mt-auto hover:opacity-80"
+                 style={{
+                   backgroundColor: "transparent",
+                   color: "var(--foreground)",
+                   borderColor: "var(--secondary)"
+                 }}
+               >
+                 <ExternalLink className="w-4 h-4" /> Ver Lista
+               </a>
+            </div>
           </div>
         </div>
       </section>
