@@ -956,12 +956,14 @@ const handleCopyClabe = () => {
                  Nuestra Historia
                </h2>
                <div className="w-12 h-px mb-8" style={{ backgroundColor: "var(--accent)" }} />
+               <p className="text-sm leading-relaxed mb-6 italic" style={{ opacity: 0.9 }}>
+                 “Este es el día que hizo Jehová; nos gozaremos y alegraremos en él.” — Salmos 118:24
+               </p>
                <p className="text-sm leading-relaxed mb-6" style={{ opacity: 0.9 }}>
-                 Desde el primer instante en que nuestros caminos se cruzaron, supimos que algo especial había comenzado.
-                 Años de risas compartidas, de sueños construidos juntos y de un amor que crece cada día nos traen a este momento que hemos esperado con tanta ilusión.
+                 Con el corazón lleno de gratitud a Dios, quien en su perfecto tiempo unió nuestros caminos, tenemos el honor y la alegría de compartir con ustedes el inicio de una nueva etapa en nuestras vidas.
                </p>
                <p className="text-sm leading-relaxed" style={{ opacity: 0.9 }}>
-                 Queremos celebrar este día rodeados de las personas que más amamos. Gracias por ser parte de nuestra historia.
+                 Deseamos celebrar nuestro matrimonio rodeados de las personas que amamos y que han sido parte de nuestra historia. Será una bendición contar con su presencia en este día tan especial, en el que, delante de Dios, uniremos nuestras vidas en amor y fe.
                </p>
             </div>
           </motion.div>
